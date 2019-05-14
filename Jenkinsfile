@@ -20,10 +20,8 @@ node {
         }
 
 
-        stage("Publish to Nexus") {
-                configFileProvider() {
-                    sh "mvn deploy"
-                }
+        stage("Publish to Nexus") {                
+                    sh "mvn deploy"                
         }
         
     } catch (e) {
