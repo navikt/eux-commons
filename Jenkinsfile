@@ -16,7 +16,7 @@ node {
         }
 
         stage("Build application") {
-                sh "mvn clean package -B -e -U -s "
+                sh "mvn clean package -B -e -U"
         }
 
 
