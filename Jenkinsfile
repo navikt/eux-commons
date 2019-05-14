@@ -1,8 +1,8 @@
 #!groovy
 
+
 node {
 
-    def VERA_UPDATE_URL = "https://vera.adeo.no/api/v1/deploylog"
     def application = "eux-commons"
 
     try {
@@ -18,16 +18,13 @@ node {
         stage("Build application") {
                 sh "mvn clean package -B -e -U"
         }
-
-
         stage("Publish to Nexus") {                
                     sh "mvn deploy -X"                
         }
         
     } catch (e) {
-        GString message = ":crying_cat_face: \n Siste commit på ${branchName} kunne ikke deployes til . Se logg for mer info ${env.BUILD_URL}\nCommit ${commit}"     
-        throw e
     }
+
 }
 
 def getBuildUser(defaultUser) {
