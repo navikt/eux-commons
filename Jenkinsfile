@@ -19,7 +19,7 @@ node {
                 sh "mvn clean package -B -e -U"
         }
         stage("Publish to Nexus") {                
-                    sh "mvn deploy -X"                
+                    sh "mvn deploy"                
         }
         
     } catch (e) {
