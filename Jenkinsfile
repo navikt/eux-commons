@@ -1,9 +1,9 @@
 #!groovy
 
 
-    def VERA_UPDATE_URL = "https://vera.adeo.no/api/v1/deploylog"
+node {
+
     def application = "eux-commons"
-    def mvnSettings = "navMavenSettingsUtenProxy"
 
     try {
         stage("Checkout") {
@@ -16,22 +16,15 @@
         }
 
         stage("Build application") {
-            configFileProvider([configFile(fileId: "$mvnSettings", variable: "MAVEN_SETTINGS")]) {
-                sh "mvn clean package -B -e -U -s $MAVEN_SETTINGS"
-            }
+                sh "mvn clean package -B -e -U"
         }
-
-        stage("Publish to Nexus") {
-                configFileProvider([configFile(fileId: "$mvnSettings", variable: "MAVEN_SETTINGS")]) {
-                    sh "mvn -DskipTests -DdeployAtEnd=true -DretryFailedDeploymentCount=5 --settings $MAVEN_SETTINGS deploy"
-                }
+        stage("Publish to Nexus") {                
+                    sh "mvn deploy -X"                
         }
-       
+        
     } catch (e) {
-        GString message = ":crying_cat_face: \n Siste commit på ${branchName} kunne ikke deployes til ${environment}. Se logg for mer info ${env.BUILD_URL}\nCommit ${commit}"
-        sendSlackMessage("danger", message)
-        throw e
     }
+
 }
 
 def getBuildUser(defaultUser) {
@@ -49,15 +42,6 @@ def getBuildUser(defaultUser) {
 
 def replaceInFile(oldString, newString, file) {
     sh "sed -i -e 's/${oldString}/${newString}/g' ${file}"
-}
-
-def sendSlackMessage(String color, String message) {
-
-    try {
-        slackSend color: color, message: message, tokenCredentialId: "melosys-slack-token"
-    } catch (Exception exception) {
-        echo("Failed to send message to Slack: ${exception.getMessage()}")
-    }
 }
 
 def resolveBranchName(String branchName) {
