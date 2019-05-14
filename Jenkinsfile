@@ -25,12 +25,7 @@ node {
                     sh "mvn -DskipTests -DdeployAtEnd=true -DretryFailedDeploymentCount=5  deploy"
                 }
         }
-
-        stage ("Send Slack-message") {
-            GString message = ":clap: Siste commit på ${branchName} bygd og deployet OK til miljø .\nCommit: ${commit}"
-            sendSlackMessage("good", message)
-        }
-
+        
     } catch (e) {
         GString message = ":crying_cat_face: \n Siste commit på ${branchName} kunne ikke deployes til . Se logg for mer info ${env.BUILD_URL}\nCommit ${commit}"
         sendSlackMessage("danger", message)
