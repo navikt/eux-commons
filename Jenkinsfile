@@ -21,7 +21,7 @@ node {
 
 
         stage("Publish to Nexus") {                
-                    sh "mvn deploy"                
+                    sh "mvn deploy -X"                
         }
         
     } catch (e) {
