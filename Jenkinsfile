@@ -27,8 +27,7 @@ node {
         }
         
     } catch (e) {
-        GString message = ":crying_cat_face: \n Siste commit på ${branchName} kunne ikke deployes til . Se logg for mer info ${env.BUILD_URL}\nCommit ${commit}"
-        sendSlackMessage("danger", message)
+        GString message = ":crying_cat_face: \n Siste commit på ${branchName} kunne ikke deployes til . Se logg for mer info ${env.BUILD_URL}\nCommit ${commit}"     
         throw e
     }
 }
@@ -48,15 +47,6 @@ def getBuildUser(defaultUser) {
 
 def replaceInFile(oldString, newString, file) {
     sh "sed -i -e 's/${oldString}/${newString}/g' ${file}"
-}
-
-def sendSlackMessage(String color, String message) {
-
-    try {
-        slackSend color: color, message: message, tokenCredentialId: "eessibasis-slack-token"
-    } catch (Exception exception) {
-        echo("Failed to send message to Slack: ${exception.getMessage()}")
-    }
 }
 
 def resolveBranchName(String branchName) {
