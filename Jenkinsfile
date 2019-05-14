@@ -22,7 +22,7 @@ node {
 
         stage("Publish to Nexus") {
                 configFileProvider() {
-                    sh "mvn -DskipTests -DdeployAtEnd=true -DretryFailedDeploymentCount=5  deploy"
+                    sh "mvn deploy"
                 }
         }
         
