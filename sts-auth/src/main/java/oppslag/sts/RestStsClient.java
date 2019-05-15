@@ -12,9 +12,9 @@ import org.springframework.web.util.UriComponentsBuilder;
 public class RestStsClient {
 
   private static final Logger log = LoggerFactory.getLogger(RestStsClient.class);
-  private final String baseUrl;
-  private final String username;
-  private final String password;
+  private String baseUrl;
+  private String username;
+  private String password;
 
   public RestStsClient(String baseUrl,
                        String username,
