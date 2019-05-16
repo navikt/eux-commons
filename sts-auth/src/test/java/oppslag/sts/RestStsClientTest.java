@@ -4,8 +4,6 @@ package oppslag.sts;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.doReturn;
 
-import java.util.HashMap;
-import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -22,7 +20,7 @@ public class RestStsClientTest {
   @BeforeEach
   public void setup() {
     MockitoAnnotations.initMocks(this);
-    restStsClient = Mockito.spy(new RestStsClient("http://foo", "", ""));
+    restStsClient = Mockito.spy(new RestStsClient("", "", ""));
     doReturn("mytoken").when(restStsClient).getAccessTokenFromSts();
   }
 

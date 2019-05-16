@@ -5,20 +5,24 @@ import java.util.List;
 import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.client.support.BasicAuthenticationInterceptor;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
+@Component
 public class RestStsClient {
 
   private static final Logger log = LoggerFactory.getLogger(RestStsClient.class);
-  private String baseUrl;
-  private String username;
-  private String password;
 
-  public RestStsClient(String baseUrl,
-                       String username,
-                       String password) {
+  private final String baseUrl;
+  private final String username;
+  private final String password;
+
+  public RestStsClient(@Value("${reststs.url}") String baseUrl,
+                       @Value("${appcredentials.username}") String username,
+                       @Value("${appcredentials.password}") String password) {
     this.baseUrl = baseUrl;
     this.username = username;
     this.password = password;

@@ -18,10 +18,10 @@ public class RestStsClientIT {
 
   @BeforeEach
   public void configureTrustStore() {
-    String url = System.getProperty(URL);
+    String baseUrl = System.getProperty(URL);
     String username = System.getProperty(USERNAME);
     String password = System.getProperty(PASSWORD);
-    restStsClient = new RestStsClient(url, username, password);
+    restStsClient = new RestStsClient(baseUrl, username, password);
   }
 
   @Test
