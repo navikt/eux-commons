@@ -1,4 +1,4 @@
-package oppslag.sts;
+package no.nav.eux.security.sts;
 
 import java.io.IOException;
 import java.util.Collections;

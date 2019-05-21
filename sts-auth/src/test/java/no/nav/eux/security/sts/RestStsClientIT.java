@@ -1,4 +1,4 @@
-package oppslag.sts;
+package no.nav.eux.security.sts;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
