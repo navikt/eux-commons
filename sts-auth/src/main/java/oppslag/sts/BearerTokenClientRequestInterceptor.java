@@ -8,12 +8,10 @@ import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.stereotype.Component;
 
-@Component
 public class BearerTokenClientRequestInterceptor implements ClientHttpRequestInterceptor {
 
   private final RestStsClient restStsClient;
 
-  @Autowired
   public BearerTokenClientRequestInterceptor(RestStsClient restStsClient) {
     this.restStsClient = restStsClient;
   }

@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
-@Component
 public class RestStsClient {
 
   private static final Logger log = LoggerFactory.getLogger(RestStsClient.class);
@@ -20,9 +19,9 @@ public class RestStsClient {
   private final String username;
   private final String password;
 
-  public RestStsClient(@Value("${reststs.url}") String baseUrl,
-                       @Value("${appcredentials.username}") String username,
-                       @Value("${appcredentials.password}") String password) {
+  public RestStsClient(String baseUrl,
+                       String username,
+                       String password) {
     this.baseUrl = baseUrl;
     this.username = username;
     this.password = password;
@@ -35,13 +34,17 @@ public class RestStsClient {
         .queryParam("scope", "openid")
         .toUriString();
     log.debug("getting access_token from security-token-service");
-
-    //As RestTemplate is not threadsafe, creating a local instance.
-    RestTemplate restTemplate = new RestTemplate();
-    restTemplate.setInterceptors(getInteceptorsList());
+    RestTemplate restTemplate = getRestTemplate();
 
     final Map response = restTemplate.getForObject(url, Map.class);
     return response != null ? (String) response.get("access_token") : null;
+  }
+
+  private RestTemplate getRestTemplate() {
+    //As RestTemplate is not threadsafe, creating a local instance.
+    RestTemplate restTemplate = new RestTemplate();
+    restTemplate.setInterceptors(getInteceptorsList());
+    return restTemplate;
   }
 
   private List getInteceptorsList() {
