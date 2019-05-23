@@ -25,7 +25,7 @@
     <mockito.version>2.27.0</mockito.version>
     <junit5.jupiter.version>5.2.0</junit5.jupiter.version>
     <assertj.version>3.12.2</assertj.version>
-    <jacksondatabind.version>2.9.8</jacksondatabind.version>
+    <jacksondatabind.version>2.9.9</jacksondatabind.version>
   </properties>
 
   <dependencies>
