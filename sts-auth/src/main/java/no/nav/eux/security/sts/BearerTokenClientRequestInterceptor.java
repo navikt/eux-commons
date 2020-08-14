@@ -8,7 +8,7 @@ import org.springframework.http.client.ClientHttpResponse;
 
 public class BearerTokenClientRequestInterceptor implements ClientHttpRequestInterceptor {
 
-  private final RestStsClient restStsClient;
+  protected final RestStsClient restStsClient;
 
   public BearerTokenClientRequestInterceptor(RestStsClient restStsClient) {
     this.restStsClient = restStsClient;

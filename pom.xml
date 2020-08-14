@@ -8,7 +8,7 @@
   <groupId>no.nav.eux</groupId>
   <artifactId>eux-commons</artifactId>
   <packaging>pom</packaging>
-  <version>1.1.4</version>
+  <version>1.1.5</version>
 
   <modules>
     <module>sts-auth</module>
@@ -19,13 +19,13 @@
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
 
-    <spring.version>5.1.6.RELEASE</spring.version>
-    <httpclient.version>4.5.8</httpclient.version>
-    <slf4j.version>1.7.26</slf4j.version>
-    <mockito.version>2.27.0</mockito.version>
-    <junit5.jupiter.version>5.2.0</junit5.jupiter.version>
-    <assertj.version>3.12.2</assertj.version>
-    <jacksondatabind.version>2.9.9</jacksondatabind.version>
+    <spring.version>5.2.8.RELEASE</spring.version>
+    <httpclient.version>4.5.12</httpclient.version>
+    <slf4j.version>1.7.30</slf4j.version>
+    <mockito.version>3.4.6</mockito.version>
+    <junit5.jupiter.version>5.6.2</junit5.jupiter.version>
+    <assertj.version>3.16.1</assertj.version>
+    <jacksondatabind.version>2.11.2</jacksondatabind.version>
   </properties>
 
   <dependencies>
