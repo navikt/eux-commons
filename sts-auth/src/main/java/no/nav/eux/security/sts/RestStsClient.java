@@ -45,8 +45,8 @@ public class RestStsClient {
 
       final Map response = restTemplate.getForObject(completeUrl, Map.class);
       if (response != null) {
-        String accessToken = (String) response.get("access_token");
-        String expiresIn = (String) response.get("expires_in");
+        String accessToken = response.get("access_token").toString();
+        String expiresIn = response.get("expires_in").toString();
         long expirationTime;
         try {
           expirationTime = System.currentTimeMillis() + Long.parseLong(expiresIn) * 1000L - REFRESH_TIMEOUT_MARGIN_MS;
